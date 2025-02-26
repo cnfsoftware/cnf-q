@@ -23,7 +23,7 @@ func BenchmarkQueue_Pop(b *testing.B) {
 
 	// Popping 1000 elements
 	for i := 0; i < b.N; i++ {
-		q.Pop()
+		_, _ = q.Pop()
 	}
 }
 
@@ -37,6 +37,6 @@ func BenchmarkQueue_Peek(b *testing.B) {
 
 	// Peeking 1000 elements
 	for i := 0; i < b.N; i++ {
-		q.Peek()
+		_, _ = q.Peek()
 	}
 }
