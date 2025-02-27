@@ -29,7 +29,7 @@ func (qm *QueueManager) GetQueue(name string) *Queue {
 
 // ListQueues returns list of existing queues
 func (qm *QueueManager) ListQueues() []string {
-	var keys []string
+	keys := []string{}
 	qm.queues.Range(func(key, _ interface{}) bool {
 		keys = append(keys, key.(string))
 		return true
