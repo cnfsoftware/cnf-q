@@ -18,6 +18,5 @@ func (qs *QueueService) pushHandler(c *gin.Context) {
 	defer c.Request.Body.Close()
 
 	q.Push(body)
-	c.JSON(http.StatusOK, gin.H{"message": "Add to queue"})
-
+	c.Status(http.StatusCreated)
 }

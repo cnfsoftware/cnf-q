@@ -8,10 +8,11 @@ import (
 
 func Benchmark_CNFQServer_Push(b *testing.B) {
 	client := queueclient.NewClient("http://localhost:8080")
+	bytes := []byte("a")
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_ = client.Push("a", []byte("a"))
+		_ = client.Push("a", bytes)
 	}
 }
 

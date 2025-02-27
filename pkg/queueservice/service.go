@@ -3,10 +3,12 @@ package queueservice
 import (
 	"cnf-q/pkg/queue"
 	"github.com/gin-gonic/gin"
+	"sync"
 )
 
 type QueueService struct {
-	manager *queue.QueueManager
+	manager    *queue.QueueManager
+	bufferPool *sync.Pool
 }
 
 func NewQueueService() *QueueService {
@@ -16,7 +18,8 @@ func NewQueueService() *QueueService {
 }
 
 func (qs *QueueService) Run() error {
-	r := gin.Default()
+	gin.SetMode(gin.ReleaseMode)
+	r := gin.New()
 
 	r.POST("/queue/:name/push", qs.pushHandler)
 	r.GET("/queue/:name/pop", qs.popHandler)
