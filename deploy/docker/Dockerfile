@@ -7,14 +7,14 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 go build -o queue-service ./cmd/server/main.go
+RUN CGO_ENABLED=0 go build -o cnf-q-service ./cmd/server/main.go
 
 FROM alpine:latest
 
 WORKDIR /root/
 
-COPY --from=builder /app/queue-service .
+COPY --from=builder /app/cnf-q-service .
 
 EXPOSE 8080
 
-CMD ["./queue-service"]
+CMD ["./cnf-q-service"]
