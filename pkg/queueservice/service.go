@@ -10,6 +10,8 @@ type QueueService struct {
 	manager     *queue.QueueManager
 	port        string
 	accessToken string
+	tlsCertFile string
+	tlsKeyFile  string
 }
 
 type Option func(*QueueService) *QueueService
@@ -49,6 +51,16 @@ func WithAccessToken(accessToken string) Option {
 	}
 }
 
+func WithTLS(tlsCertFile, tlsKeyFile string) Option {
+	return func(srv *QueueService) *QueueService {
+		if tlsCertFile != "" && tlsKeyFile != "" {
+			srv.tlsCertFile = tlsCertFile
+			srv.tlsKeyFile = tlsKeyFile
+		}
+		return srv
+	}
+}
+
 func (qs *QueueService) Run() error {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
@@ -61,6 +73,10 @@ func (qs *QueueService) Run() error {
 	r.GET("/queue/:name/pop", qs.popHandler)
 	r.GET("/queue/:name/peek", qs.peekHandler)
 	r.GET("/queues", qs.listQueuesHandler)
+
+	if qs.tlsCertFile != "" && qs.tlsKeyFile != "" {
+		return r.RunTLS(":"+qs.port, qs.tlsCertFile, qs.tlsKeyFile)
+	}
 
 	return r.Run(":" + qs.port)
 }
