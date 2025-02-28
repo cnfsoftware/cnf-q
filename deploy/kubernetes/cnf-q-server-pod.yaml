@@ -7,11 +7,6 @@ metadata:
 spec:
   containers:
     - name: cnf-q-server
-      image: cnfsoftware/cnf-q-server
+      image: cnfsoftware/cnf-q-service
       ports:
         - containerPort: 8080
-      env:
-        - name: LOG_LEVEL
-          value: "info"
-  imagePullSecrets:
-    - name: my-registry-secret

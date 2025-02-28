@@ -1,14 +1,10 @@
 # (CNF-Q) CNF Queue Service
 
----
 ## Description
 
----
 Queue Service is a fast and lightweight queuing system written in Go. It allows adding and retrieving data from queues via a REST API. It supports token-based authentication and handles multiple queues simultaneously.
 
 ## 🚀 Features
-
----
 
 - Create and manage queues
 - Push and pop messages (FIFO)
@@ -17,8 +13,6 @@ Queue Service is a fast and lightweight queuing system written in Go. It allows 
 - Token authentication
 
 ## 📌 Installation
-
----
 
 ### Option 1: Build your binary file
 Please clone repository.
@@ -99,14 +93,10 @@ Example response:
 
 ## 📜 License
 
----
-
 This project is released under the MIT license.
 
 📧 For questions or issues, feel free to open an Issue on GitHub! 🚀
 
-## 📜 Additional information
-
----
+## 📜 Maintenance
 
 The maintenance of the project belongs to [CNF Software](https://cnf.software).
